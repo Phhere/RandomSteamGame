@@ -20,13 +20,15 @@ if(stristr($_REQUEST['username'], ",")){
              $infos[$name]['status'] = $api->information->privacyMessage;
         }
         elseif($api->information->privacyState != "public"){
-            $infos[$name]['status'] = "Account is not public";
+            $infos[$name]['status'] = "Account is not public (".$api->information->privacyState.")";
         }
         else{
             $games = $api->get_games();
             if(count($games)){
                 $infos[$name]['games'] = $games;
-                $usable_games = $games;
+                if(count($games) > count($usable_games)){
+                    $usable_games = $games;
+                }
             }
             else{
                 $infos[$name]['status'] = "No Games available";
@@ -37,10 +39,15 @@ if(stristr($_REQUEST['username'], ",")){
         return array_keys($account['games']);
     }
     $games = array_values(array_filter(array_map("get_games", $infos)));
-    $keys = call_user_func_array("array_intersect",$games);
+    if(count($games) > 1){
+        $keys = call_user_func_array("array_intersect",$games);
+    }
+    else{
+        $keys = array();
+    }
     foreach($infos as $account => $data){
         if(isset($data['status'])){
-            echo "<div class='alert alert-warning'>Account ".$account.": ".$data['status']."</div>";
+            echo "<div class='alert alert-warning'>Account ".htmlspecialchars($account).": ".$data['status']."</div>";
         }
     }
     if(count($keys) == 0){
@@ -68,7 +75,7 @@ else{
         echo "<div class='alert alert-danger'>".$api->information->privacyMessage."</div>";
     }
     elseif($api->information->privacyState != "public"){
-        echo "<div class='alert alert-danger'>Account is not public</div>";
+        echo "<div class='alert alert-danger'>Account is not public (".$api->information->privacyState.")</div>";
     }
     else{
         $games = $api->get_games();
