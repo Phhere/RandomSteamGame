@@ -18,6 +18,7 @@ if(stristr($_REQUEST['username'], ",")){
         $infos[$name] = array();
         $api->load($name);
         $infos[$name]['games'] = array();
+        $infos[$name]['infos'] = $api->information;
         if($api->information == false){
             $infos[$name]['status'] = "Can't query account data. Maybe does the account not exist";
         }
@@ -50,11 +51,13 @@ if(stristr($_REQUEST['username'], ",")){
     else{
         $keys = array();
     }
+    /*
     foreach($infos as $account => $data){
         if(isset($data['status'])){
             echo "<div class='alert alert-warning'>Account ".htmlspecialchars($account).": ".$data['status']."</div>";
         }
     }
+    */
     if(count($keys) == 0){
         echo "<div class='alert alert-danger'>Can't find game you all own</div>";
     }
@@ -64,7 +67,19 @@ if(stristr($_REQUEST['username'], ",")){
                       <h1>'.$launch->name.'</h1>
                       <a href="steam://run/'.$launch->appID.'" class="btn btn-success">Launch</a>
                     </div>';
-        echo "<div class='well'>Game: ".count($keys)."</div>";
+        echo '<ul class="list-group">';
+        foreach($infos as $account => $data){
+            if(count($data['games'])){
+                $badge = count($data['games']);
+            }
+            else{
+                $badge = "unknown";
+            }
+            echo '<li class="list-group-item"><span class="badge">'.$badge.'</span><img class="img-circle" width="18" src="'.$data['infos']->avatarIcon.'" /><a href="">'.$data['infos']->steamID.'</a></li>';
+        }
+        echo '<li class="list-group-item active"><span class="badge">'.count($keys).'</span>Common Games</li>';
+        echo '</ul>';
+
         foreach($keys as $gameID){
             $game = $usable_games[$gameID];
             echo "<div class='row well game'><img src='".$game->logo."' width='200' class='img-thumbnail pull-left' /><a href='steam://run/".$game->appID."' class='btn btn-success pull-right'>Launch</a><h4>".$game->name."</h4></div>";
