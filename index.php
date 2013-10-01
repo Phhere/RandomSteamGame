@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="">
   <meta name="author" content="">
-  <link rel="shortcut icon" href="bootstrap/assets/ico/favicon.png">
 
   <title>Random Steam Game</title>
 
@@ -18,8 +17,8 @@
 
   <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
-      <script src="../../assets/js/html5shiv.js"></script>
-      <script src="../../assets/js/respond.min.js"></script>
+      <script src="https://raw.github.com/aFarkas/html5shiv/master/dist/html5shiv.js"></script>
+      <script src="https://raw.github.com/scottjehl/Respond/master/respond.min.js"></script>
       <![endif]-->
     </head>
 
@@ -28,7 +27,7 @@
       <div class="container">
         <div class="header">
           <ul class="nav nav-pills pull-right">
-            <li class="active"><a href="#">Home</a></li>
+            <li class="active"><a href="index.php">Home</a></li>
             <li><a href="#">About</a></li>
             <li><a href="#">Contact</a></li>
           </ul>
