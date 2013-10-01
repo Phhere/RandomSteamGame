@@ -34,28 +34,39 @@
           <h3 class="text-muted">Random Steam Game</h3>
         </div>
 
+        <?php
+        if(isset($_REQUEST['cache']) || empty($_REQUEST)){
+          $cache = " checked='checked'";
+          $caching = true;
+        }
+        else{
+          $cache = "";
+          $caching = false;
+        }
+        ?>
 
         <div class="row">
-           <div class="col-lg-12">
              <form method="post">
                <div class="input-group">
                 <input type="text" name="username" value="<?php echo htmlentities(@$_REQUEST['username']);?>" class="form-control">
+                <span class="input-group-addon">
+                  <input type="checkbox" name="cache" value="on" <?php echo $cache;?>> Cache
+                </span>
                 <span class="input-group-btn">
-                  <button class="btn btn-default" type="button">Go!</button>
+                  <button class="btn btn-default" type="submit">Go!</button>
                 </span>
               </div>
             </form>
-          </div>
         </div>
         <br/>
         <?php
         if(isset($_REQUEST['username'])){
-          $var = trim($_REQUEST['username']);
+          $username = trim($_REQUEST['username']);
         }
         else{
-          $var = null;
+          $username = null;
         }
-        if(!empty($var)){
+        if(!empty($username)){
           include("query.php");
         }
         else {

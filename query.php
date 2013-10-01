@@ -2,7 +2,12 @@
 include 'api/SteamAPI.php';
 include 'api/SteamAPIDriver.php';
 include 'api/SteamAPIDriverCached.php';
-$steamdriver = new Neoseeker\SteamAPI\SteamAPIDriverCached;
+if($caching == true){
+    $steamdriver = new Neoseeker\SteamAPI\SteamAPIDriverCached;
+}
+else{
+    $steamdriver = new Neoseeker\SteamAPI\SteamAPIDriver;
+}
 $api = new Neoseeker\SteamAPI\SteamAPI($steamdriver);
 if(stristr($_REQUEST['username'], ",")){
     $infos = array();
