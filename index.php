@@ -50,8 +50,13 @@
         </div>
         <br/>
         <?php
-        $var = trim($_REQUEST['username']);
-        if(isset($_REQUEST['username']) && !empty($var)){
+        if(isset($_REQUEST['username'])){
+          $var = trim($_REQUEST['username']);
+        }
+        else{
+          $var = null;
+        }
+        if(!empty($var)){
           include("query.php");
         }
         else {
