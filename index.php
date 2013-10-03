@@ -28,7 +28,6 @@
         <div class="header">
           <ul class="nav nav-pills pull-right">
             <li class="active"><a href="index.php">Home</a></li>
-            <li><a href="#">About</a></li>
             <li><a href="#">Contact</a></li>
           </ul>
           <h3 class="text-muted">Random Steam Game</h3>
@@ -46,7 +45,8 @@
         ?>
 
         <div class="row">
-             <form method="post">
+          <div class='col-md-12'>
+             <form method="get">
                <div class="input-group">
                 <input type="text" name="username" value="<?php echo htmlentities(@$_REQUEST['username']);?>" class="form-control">
                 <span class="input-group-addon">
@@ -57,6 +57,7 @@
                 </span>
               </div>
             </form>
+          </div>
         </div>
         <br/>
         <?php
@@ -76,26 +77,18 @@
           <p class="lead">Enter your Steam-Name or SteamID to find a game to play. You can enter multiple names (seperated by comma) to find a game you could play together with your friends</p>
         </div>
         <div class="row marketing">
-          <div class="col-lg-6">
-            <h4>Subheading</h4>
-            <p>Donec id elit non mi porta gravida at eget metus. Maecenas faucibus mollis interdum.</p>
-
-            <h4>Subheading</h4>
-            <p>Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Cras mattis consectetur purus sit amet fermentum.</p>
-
-            <h4>Subheading</h4>
-            <p>Maecenas sed diam eget risus varius blandit sit amet non magna.</p>
+          <div class="col-lg-12">
+            <h4>Datasource</h4>
+            <p>This Page only parses the public community profiles, so it is limited to public profiles. No Login needed</p>
           </div>
 
-          <div class="col-lg-6">
-            <h4>Subheading</h4>
-            <p>Donec id elit non mi porta gravida at eget metus. Maecenas faucibus mollis interdum.</p>
-
-            <h4>Subheading</h4>
-            <p>Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Cras mattis consectetur purus sit amet fermentum.</p>
-
-            <h4>Subheading</h4>
-            <p>Maecenas sed diam eget risus varius blandit sit amet non magna.</p>
+          <div class="col-lg-5">
+            <h4>Opensource</h4>
+            <p>Fork me on <a href="https://github.com/Phhere/RandomSteamGame">Github</a></p>
+          </div>
+          <div class="col-lg-7">
+            <h4>SteamAPI</h4>
+            <p>Thanks to <a href="https://github.com/Neoseeker/SteamAPI">Neoseeker</a> for the Steam Community API.</p>
           </div>
         </div>
         <?php
@@ -103,14 +96,9 @@
       ?>
 
         <div class="footer">
-          <p>&copy; Company 2013</p>
+          <p>&copy; Philipp Rehs 2013</p>
         </div>
 
       </div> <!-- /container -->
-
-
-    <!-- Bootstrap core JavaScript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
   </body>
   </html>
